@@ -19,3 +19,6 @@ spec:
         image: emrekardaslar/argocd-myapp:latest  # Your Docker image
         ports:
         - containerPort: 5041  # The port your .NET app runs on
+        env:
+        - name: PORT
+          value: "5041"
