@@ -18,4 +18,4 @@ spec:
       - name: argocd-myapp
         image: emrekardaslar/argocd-myapp:latest  # Your Docker image
         ports:
-        - containerPort: 5000  # The port your .NET app runs on
+        - containerPort: 5041  # The port your .NET app runs on
