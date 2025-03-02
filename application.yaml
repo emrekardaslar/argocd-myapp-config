@@ -1,23 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp-argo-application
-  namespace: argocd
+  name: argocd-myapp
 spec:
-  project: default
-
-  source:
-    repoURL: https://github.com/emrekardaslar/argocd-myapp-config.git
-    targetRevision: HEAD
-    path: dev
-  destination: 
+  destination:
     server: https://kubernetes.default.svc
-    namespace: myapp
-
+    namespace: default
+  source:
+    repoURL: https://github.com/emrekardaslar/argocd-myapp-config.git  # Your Git repo
+    targetRevision: main
+    path: manifests  # Folder inside your Git repo containing YAML files
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
-
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true

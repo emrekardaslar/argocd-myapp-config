@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: argocd-myapp
+  labels:
+    app: argocd-myapp
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: myapp
-  replicas: 2
+      app: argocd-myapp
   template:
     metadata:
       labels:
-        app: myapp
+        app: argocd-myapp
     spec:
       containers:
-      - name: myapp
-        image: emrekardaslar/argocd-myapp:latest
+      - name: argocd-myapp
+        image: emrekardaslar/argocd-myapp:latest  # Your Docker image
         ports:
-        - containerPort: 8080
+        - containerPort: 5000  # The port your .NET app runs on

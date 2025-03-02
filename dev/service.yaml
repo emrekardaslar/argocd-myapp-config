@@ -1,20 +1,12 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: myapp
+  name: argocd-myapp
 spec:
+  type: LoadBalancer  # Makes the service accessible externally
   selector:
-    matchLabels:
-      app: myapp
-  replicas: 2
-  template:
-    metadata:
-      labels:
-        app: myapp
-    spec:
-      containers:
-      - name: myapp
-        image: emrekardaslar/argocd-myapp:latest
-        ports:
-        - containerPort: 8080
-
+    app: argocd-myapp
+  ports:
+  - protocol: TCP
+    port: 80  # External port
+    targetPort: 5000  # Internal app port
